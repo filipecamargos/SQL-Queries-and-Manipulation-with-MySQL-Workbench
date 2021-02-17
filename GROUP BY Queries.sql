@@ -21,7 +21,7 @@ FROM rental
 GROUP BY customer_id
 ORDER BY rentals desc;
 
-/*Make sure do not use Where for group by instead use have thef filter hapens on the count*/
+/*Using Having for filtering data*/
 SELECT customer_id, count(*) as rentals
 FROM rental
 GROUP BY customer_id
@@ -65,6 +65,15 @@ SELECT MAX(datediff(return_date,rental_date))
 FROM rental;
 
 /*
+Multicolumn Grouping can be performed
+This query finds the number of films 
+for each film rating for each actor
 */
+SELECT fa.actor_id, f.rating, count(*) as total
+FROM film_actor as fa
+	INNER JOIN film as f
+    ON fa.film_id = f.film_id
+GROUP BY fa.actor_id, f.rating
+ORDER BY 1, 2;
 
 
