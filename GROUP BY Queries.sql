@@ -32,22 +32,39 @@ Using MAX(), MIN(), AVG(), SUM(), COUNT() in the payment table
 */
 SELECT MAX(amount) as max_amount,
 	MIN(amount) minimum_amount,
-    AVG(amount) avarage_amount,
+    round(AVG(amount), 2) avarage_amount,
     SUM(amount) total_amount,
     COUNT(*) number_of_amount
 FROM payment;
 
 /*
-
+Example on how to specified how the data should be grouped
 */
+SELECT customer_id,
+	MAX(amount) as max_amount,
+	MIN(amount) minimum_amount,
+    round(AVG(amount), 2) avarage_amount,
+    SUM(amount) total_amount,
+    COUNT(*) number_of_amount
+FROM payment
+GROUP BY customer_id;
 
+/*
+Using distinct with count
+Below in the payment there are 16049 instance of id for each payment
+But for the num_customers there are 599 since DISTINCT was used in the count
+*/
+SELECT COUNT(customer_id) intance_of_ids_in_the_payments,
+	COUNT(DISTINCT customer_id) num_customers
+FROM payment;
+
+/*
+ Find the maximum number of days between when a one date and the other
+*/
+SELECT MAX(datediff(return_date,rental_date))
+FROM rental;
 
 /*
 */
 
-/*
-*/
-
-/*
-*/
 
