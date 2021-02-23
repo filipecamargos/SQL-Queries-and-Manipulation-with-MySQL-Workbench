@@ -14,11 +14,17 @@ FROM city
 WHERE country_id IN (SELECT country_id
 					FROM country WHERE country IN ('Canada', 'Mexico'));
 
-/*Use the all operator to make single comparation in every value in a set
+/*Use the All or NOT IN operator to make single comparation in every value in a set
 This query will get all the customer who has not got a free rental*/
 SELECT first_name, last_name
 FROM customer
 WHERE customer_id <> ALL (SELECT customer_id 
+							FROM payment
+							WHERE amount = 0);
+                            
+SELECT first_name, last_name
+FROM customer
+WHERE customer_id NOT IN (SELECT customer_id 
 							FROM payment
 							WHERE amount = 0);
 
