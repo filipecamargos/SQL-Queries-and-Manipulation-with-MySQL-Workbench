@@ -76,4 +76,19 @@ FROM film_actor as fa
 GROUP BY fa.actor_id, f.rating
 ORDER BY 1, 2;
 
+/*Getting the number of rows*/
+SELECT count(*) as total_rows
+FROM payment;
+
+/*Count the number of payments made by each customer*/
+SELECT customer_id, count(*) as payments, sum(amount) as total
+FROM payment
+GROUP BY customer_id;
+
+/*Filtering the Data*/
+SELECT customer_id, count(*) as payments, sum(amount) as total
+FROM payment
+GROUP BY customer_id
+HAVING payments >= 40;
+
 
