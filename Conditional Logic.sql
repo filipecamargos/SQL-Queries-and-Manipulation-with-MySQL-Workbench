@@ -18,9 +18,13 @@ select c.first_name, c.last_name,
 		end num_rentals
 from customer c;
 
-
-/**/
-
+/*Number of film rentals for May, June, and July of 2005*/
+select
+	sum(case when monthname(rental_date) = 'May' then 1 else 0 end) May_rentals,
+	sum(case when monthname(rental_date) = 'June' then 1 else 0 end) June_rentals,
+	sum(case when monthname(rental_date) = 'July' then 1 else 0 end) July_rentals
+from rental
+Where rental_date between '2005-05-01' and '2005-08-01';
 
 /**/
 
