@@ -39,9 +39,21 @@ select f.title,
 	end film_availability
 from film f;
 
+/*Using searched case*/
+select name,
+	case
+		when name in ('English', 'Italian', 'French', 'German') then 'latin1'
+        when name in ('Japanese', 'Mandarin') then 'utf8'
+        ELSE 'Unknown'
+	END character_set
+from language;
 
-/**/
-
-
-/**/
+/*Set columns with Case*/
+select
+	sum(case when rating = 'G' then 1 else 0 end) g,
+	sum(case when rating = 'PG' then 1 else 0 end) pg,
+	sum(case when rating = 'PG-13' then 1 else 0 end) pg_13,
+	sum(case when rating = 'R' then 1 else 0 end) r,
+	sum(case when rating = 'NC-17' then 1 else 0 end) nc_17
+from film;
 
