@@ -26,7 +26,18 @@ select
 from rental
 Where rental_date between '2005-05-01' and '2005-08-01';
 
-/**/
+/*Returns either 'No available', 'Limited to 1', Limited to 2', 'Available', or 'Common' for film counted*/
+select f.title,
+	case (select count(*) s from inventory i
+			where i.film_id = f.film_id)
+		when 0 then 'No available'
+        when 1 then 'Limited to 1'
+        when 2 then 'Limited to 2'
+		when 3 then 'Available'
+		when 4 then 'Available'
+        else 'Common'
+	end film_availability
+from film f;
 
 
 /**/
