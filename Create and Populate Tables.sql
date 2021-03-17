@@ -25,8 +25,11 @@ CREATE TABLE `sakila`.`transaction` (
   PRIMARY KEY (`txn_id`));
   
 /*Populate the transaction table*/
-INSERT INTO account
-	(account_id, avail_balance, last_activity_date)
+INSERT INTO transaction
+	(txn_id, txn_date, account_id, txn_type_cd, amount)
 VALUES
-	(123, 500, now()),
-    (789, 75, now());
+	(1003, '2020-11-29 15:02:35', 123, 'D', 50 ),
+    (1004, '2020-11-29 15:02:35', 789, 'C', 50 );
+
+/*Get the data back to check the values*/
+SELECT * FROM transaction;
