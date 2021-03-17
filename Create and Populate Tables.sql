@@ -6,3 +6,11 @@ CREATE TABLE `sakila`.`account` (
   PRIMARY KEY (`account_id`));
   
 /*Populate the new table with data*/
+INSERT INTO account
+	(account_id, avail_balance, last_activity_date)
+VALUES
+	(123, 500, now()),
+    (789, 75, now());
+    
+/*Get the data back to check the values*/
+SELECT * FROM account;
